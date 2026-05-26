@@ -147,8 +147,7 @@ dotnet restore
 dotnet build -c Release
 ```
 4. Run tests:
-```
-bash
+```bash
 dotnet test
 ```
 
