@@ -36,13 +36,16 @@ From the `Resources` folder, run:
 ```bash
 publish.bat
 ```
-#### Publish requirements
+### Publish requirements
 .NET SDK 10.0 or later.
+
 Windows (the script uses @echo off and powershell for hashing).
+
 For cross‑platform, adapt the script accordingly.
 
-#### Notes
+### Notes
 The script assumes the project is located one directory level above Resources.
+
 You can also publish manually using the `dotnet publish` command.
 
 # Installation
