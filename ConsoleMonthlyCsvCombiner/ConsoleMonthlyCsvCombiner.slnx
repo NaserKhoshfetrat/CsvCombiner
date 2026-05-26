@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="ConsoleMonthlyCsvCombiner/ConsoleMonthlyCsvCombiner.csproj" />
+  <Project Path="MonthlyCsvCombinerTest/MonthlyCsvCombinerTest.csproj" Id="d224e8d5-ded5-47fd-bba9-0e88b714a71c" />
+</Solution>
