@@ -25,6 +25,26 @@ Input CSV files must follow the naming pattern:
 (e.g., dl_2025_03_01.csv).
 The tool extracts the date from the filename; the file content is not inspected for dates.
 
+## Automated Build Script
+
+A convenience script `publish.bat` is provided in the `Resources` folder. It publishes the application as a single, self‑contained executable.
+
+### Usage
+
+From the `Resources` folder, run:
+
+```bash
+publish.bat
+```
+#### Publish requirements
+.NET SDK 10.0 or later.
+Windows (the script uses @echo off and powershell for hashing).
+For cross‑platform, adapt the script accordingly.
+
+#### Notes
+The script assumes the project is located one directory level above Resources.
+You can also publish manually using the `dotnet publish` command.
+
 # Installation
 * Clone or download the repository.
 * Build the project using your IDE or the .NET CLI
