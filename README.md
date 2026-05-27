@@ -35,32 +35,50 @@ MIT
 # Usage
 Run the executable from the command line, optionally providing parameters.
 
-# Command line arguments
+## Quick Start (no command line arguments)
+
+1. **Download** the latest `ConsoleMonthlyCsvCombiner.exe` from the [project's github](https://github.com/NaserKhoshfetrat/CsvCombiner) page.
+2. Place the `.exe` in an empty folder (e.g., `C:\MyTool`).
+3. **Create a subfolder** named `SourceFolder` inside that same folder.
+4. **Copy all your daily CSV files** (e.g., `dl_2025_03_01.csv`) into `SourceFolder`.
+5. **Double‑click** the `.exe` or run it from the command prompt:
+   ```cmd
+   ConsoleMonthlyCsvCombiner.exe
+   ```
+   The tool will automatically process all matching CSV files inside SourceFolder and produce monthly aggregated files in Monthly_Combined (a folder created next to the .exe).
+   
+>Note: The default source folder name is SourceFolder (case‑sensitive on Linux/macOS). If you want to use a different source folder, use the --source argument as described below.
+
+## Command line arguments
 | Argument  | Alias          | Description                                                                                                   | Required |
 |-----------|----------------|---------------------------------------------------------------------------------------------------------------|----------|
-| --source  | --SourceFolder | Path to the folder containing the daily CSV files.                                                            | No       |
-| --output  | --OutputFolder | Folder where monthly CSV files will be saved. Defaults to Monthly_Combined inside the executable’s directory. | No       |
-| --pattern | --FilePattern  | File search pattern (supports * wildcard). Defaults to dl_*.csv.                                              | No       |
+| --source  | --SourceFolder | Path to the folder containing the daily CSV files. **Default:** `SourceFolder` in the same directory as the executable. | No       |
+| --output  | --OutputFolder | Folder where monthly CSV files will be saved. **Defaults** to `Monthly_Combined` inside the executable’s directory. | No       |
+| --pattern | --FilePattern  | File search pattern (supports * wildcard). **Defaults** to `dl_*.csv`.                                              | No       |
 
 
 >Note: Arguments can also be specified in an appsettings.json file (see Configuration below). Command line arguments take precedence.
 
 # Examples
 
-## Basic usage (output defaults to exe folder)
+### Default usage (using `SourceFolder`)
+`ConsoleMonthlyCsvCombiner.exe`
+> Reads CSV files from `.\SourceFolder\` and writes monthly files to `.\Monthly_Combined\`.
+
+### Basic usage (output defaults to exe folder)
 
 `MonthlyCsvCombiner.exe --source "C:\Data\Incoming"`
 >This reads all dl_*.csv from C:\Data\Incoming and writes monthly files to C:\Path\To\Exe\Monthly_Combined.
 
 
-## Specify both source and output
+### Specify both source and output
 `MonthlyCsvCombiner.exe --source "C:\Data\Incoming" --output "D:\Reports\Monthly"
 `
 
-## Use a custom file pattern
+### Use a custom file pattern
 `MonthlyCsvCombiner.exe --source "C:\Data\Incoming" --pattern "sales_*.csv"`
 
-## Using appsettings.json and overriding only the source
+### Using appsettings.json and overriding only the source
 
 `MonthlyCsvCombiner.exe --source "E:\Temp\CSVs"`
 
