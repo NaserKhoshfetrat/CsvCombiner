@@ -1,21 +1,14 @@
-# ConsoleMonthlyCsvCombiner
-
-A console application that combines daily CSV files into monthly files. The tool scans a source directory for CSV files matching a configurable pattern **(e.g., dl_YYYY_MM_DD.csv)**, groups them by year‑month, and produces one aggregated CSV file per month.
+# Brief description of ConsoleMonthlyCsvCombiner
+A console application that combines daily CSV files into monthly files. The tool scans a source directory for CSV files matching a configurable pattern <u>(e.g., <mark>dl_YYYY_MM_DD.csv</mark>)</u>, groups them by year‑month, and produces one aggregated CSV file per month.
 
 # Features
-Monthly aggregation – Automatically groups files by year and month.
-
-Flexible source & output – User can specify the input folder and output destination via command line or configuration file.
-
-Intelligent defaults – If no output folder is provided, files are saved to Monthly_Combined inside the executable's directory.
-
-Overwrite protection – Prompts the user before overwriting existing monthly files (Yes / Skip / Cancel).
-
-Disk space check – Warns if available free space is insufficient.
-
-Progress reporting – Shows detailed logs and estimated remaining time.
-
-Cross‑process safety – Uses named mutexes to prevent concurrent writes to the same output file.
+* [x] **Monthly aggregation** – Automatically groups files by year and month.
+* [x] **Flexible source & output** – User can specify the input folder and output destination via command line or configuration file.
+* [x] **Intelligent defaults** – If no output folder is provided, files are saved to Monthly_Combined inside the executable's directory.
+* [x] **Overwrite protection** – Prompts the user before overwriting existing monthly files (Yes / Skip / Cancel).
+* [x] **Disk space check** – Warns if available free space is insufficient.
+* [x] **Progress reporting** – Shows detailed logs and estimated remaining time.
+* [x] **Cross‑process safety** – Uses named mutexes to prevent concurrent writes to the same output file.
 
 # Requirements
 .NET 10.0 or later.
@@ -24,6 +17,9 @@ Input CSV files must follow the naming pattern:
 {prefix}{YYYY}_{MM}_{DD}.csv
 (e.g., dl_2025_03_01.csv).
 The tool extracts the date from the filename; the file content is not inspected for dates.
+
+# license
+MIT
 
 ## Automated Build Script
 
@@ -37,11 +33,9 @@ From the `Resources` folder, run:
 publish.bat
 ```
 ### Publish requirements
-.NET SDK 10.0 or later.
-
-Windows (the script uses @echo off and powershell for hashing).
-
-For cross‑platform, adapt the script accordingly.
+* .NET SDK 10.0 or later.
+* Windows (the script uses `@echo off` and powershell for hashing).
+>For cross‑platform, adapt the script accordingly.
 
 ### Notes
 The script assumes the project is located one directory level above Resources.
@@ -81,7 +75,7 @@ Run the executable from the command line, optionally providing parameters.
 ## Use a custom file pattern
 `MonthlyCsvCombiner.exe --source "C:\Data\Incoming" --pattern "sales_*.csv"`
 
-## Using appsettings.json (see below) and overriding only the source
+## Using appsettings.json and overriding only the source
 
 `MonthlyCsvCombiner.exe --source "E:\Temp\CSVs"`
 
@@ -89,7 +83,6 @@ Run the executable from the command line, optionally providing parameters.
 Create an appsettings.json file in the same directory as the executable. Example:
 
 ```json
-
 {
   "SourceFolder": "C:\\DefaultSource",
   "OutputFolder": "Monthly_Combined",
@@ -102,17 +95,17 @@ Create an appsettings.json file in the same directory as the executable. Example
 
 # Input File Format
 * Each daily CSV file must contain a header row.
-* The filename must match the pattern **prefixYYYY_MM_DD.csv** (e.g., dl_2025_03_01.csv).
+* The filename must match the pattern <mark>**prefixYYYY_MM_DD.csv**</mark> (e.g., dl_2025_03_01.csv).
 * The tool combines files by:
     * Including the header only from the first file of each month.
     * Appending all data rows from all files of that month (excluding headers from subsequent files).
+  
 
 # Example
 
 dl_2025_03_01.csv
 
 ```text
-
 Date,Value
 2025-03-01,10
 2025-03-01,20
@@ -173,6 +166,18 @@ dotnet build -c Release
 ```bash
 dotnet test
 ```
+
+<div style='page-break-after: always'></div>
+
+# PowerShell Alternative
+If you prefer a script‑based solution, a **PowerShell script** (`appendDailyAudit.ps1`) is included in the `Resources` folder.  
+It provides similar monthly CSV combining functionality and can be used independently of the compiled executable.
+### Quick start with PowerShell
+```powershell
+.\appendDailyAudit.ps1
+```
+The script do not accepts the same parameters as the console application (-SourceFolder, -OutputFolder, -Pattern) and is especially useful for automation or environments where running executable is restricted.
+
 
 # Support
 For issues or feature requests, please open an issue in the project repository.
