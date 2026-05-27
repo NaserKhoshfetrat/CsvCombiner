@@ -21,32 +21,6 @@ The tool extracts the date from the filename; the file content is not inspected 
 # license
 MIT
 
-## Automated Build Script
-
-A convenience script `publish.bat` is provided in the `Resources` folder. It publishes the application as a single, self‑contained executable.
-
-### Usage
-
-From the `Resources` folder, run:
-
-```bash
-publish.bat
-```
-### Publish requirements
-* .NET SDK 10.0 or later.
-* Windows (the script uses `@echo off` and powershell for hashing).
->For cross‑platform, adapt the script accordingly.
-
-### Notes
-The script assumes the project is located one directory level above Resources.
-
-You can also publish manually using the `dotnet publish` command.
-
-# Installation
-* Clone or download the repository.
-* Build the project using your IDE or the .NET CLI
-The executable will be located in bin/Release/net6.0/.
-
 # Usage
 Run the executable from the command line, optionally providing parameters.
 
@@ -143,13 +117,39 @@ Continue anyway? (Y/N)
 
 **No matching files** – The program logs an error and exits gracefully.
 
-#Logging
+# Logging
 * Console output with timestamps and log levels.
 * A rolling file log (log.txt) is created for debugging.
 
+# Installation
+* Clone or download the repository.
+* Build the project using your IDE or the .NET CLI
+The executable will be located in bin/Release/net10.0/.
+
+## Automated Build Script
+
+A convenience script `publish.bat` is provided in the `Resources` folder. It publishes the application as a single, self‑contained executable.
+
+### Usage
+
+From the `Resources` folder, run:
+
+```bash
+publish.bat
+```
+### Publish requirements
+* .NET SDK 10.0 or later.
+* Windows (the script uses `@echo off` and powershell for hashing).
+>For cross‑platform, adapt the script accordingly.
+
+#### Notes
+The script assumes the project is located one directory level above Resources.
+
+You can also publish manually using the `dotnet publish` command.
+
 # Building from Source
 
-1. Ensure .NET 6.0 SDK is installed.
+1. Ensure .NET 10.0 SDK is installed.
 
 2. Restore dependencies:
 
@@ -166,6 +166,35 @@ dotnet build -c Release
 ```bash
 dotnet test
 ```
+## Creating a publish profile (optional)
+
+If you prefer using a Visual Studio publish profile instead of the command line or `publish.bat`, you can create a `.pubxml` file inside the `Properties/PublishProfiles/` folder.  
+
+Use the following content as a template (do **not** commit this file if your `.gitignore` excludes `*.pubxml`):
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <PropertyGroup>
+    <Configuration>Release</Configuration>
+    <Platform>Any CPU</Platform>
+    <PublishDir>..\Resources\dist\</PublishDir>
+    <PublishProtocol>FileSystem</PublishProtocol>
+    <_TargetId>Folder</_TargetId>
+    <TargetFramework>net10.0</TargetFramework>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>true</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <DebugType>None</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <PublishReadyToRun>false</PublishReadyToRun>
+    <PublishTrimmed>false</PublishTrimmed>
+  </PropertyGroup>
+</Project>
+```
+
+Once the profile is saved (e.g., FolderProfile.pubxml), you can publish by right‑clicking the project in Visual Studio and selecting Publish.
+
 
 <div style='page-break-after: always'></div>
 
