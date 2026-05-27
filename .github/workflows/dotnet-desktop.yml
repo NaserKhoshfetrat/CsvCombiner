@@ -74,9 +74,9 @@ jobs:
       - name: Build
         run: dotnet build ConsoleMonthlyCsvCombiner/ConsoleMonthlyCsvCombiner/ConsoleMonthlyCsvCombiner.csproj -c Release --no-restore
 
-      # Auto-discover and run all test projects
       - name: Run tests
-        run: dotnet test --no-build -c Release --verbosity normal
+        run: dotnet test ConsoleMonthlyCsvCombiner/ConsoleMonthlyCsvCombiner.slnx -c Release --no-build --verbosity normal
+        # continue-on-error: true
 
       - name: Publish single executable
         run: |
