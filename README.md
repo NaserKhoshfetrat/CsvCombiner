@@ -6,7 +6,7 @@ A console application that combines daily CSV files into monthly files. The tool
 
 ## Download the latest build
 
-[![Download latest artifact](https://img.shields.io/badge/download-latest_build-blue)](https://nightly.link/NaserKhoshfetrat/CsvCombiner/actions/runs/26507288213/ConsoleMonthlyCsvCombiner.zip)
+[![Download latest artifact](https://img.shields.io/badge/download-latest_build-blue)](https://nightly.link/NaserKhoshfetrat/CsvCombiner/workflows/dotnet-desktop/main/ConsoleMonthlyCsvCombiner.zip)
 
 > **Note:** The download link above always points to the most recent successful build from the `main` branch.  
 > No GitHub account is required – the file is served via [nightly.link](https://nightly.link).
