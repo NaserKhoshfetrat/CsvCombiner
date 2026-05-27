@@ -1,5 +1,16 @@
-# Brief description of ConsoleMonthlyCsvCombiner
+# Description
 A console application that combines daily CSV files into monthly files. The tool scans a source directory for CSV files matching a configurable pattern <u>(e.g., <mark>dl_YYYY_MM_DD.csv</mark>)</u>, groups them by year‑month, and produces one aggregated CSV file per month.
+
+<!-- Badge showing workflow status -->
+[![Build and Release](https://github.com/NaserKhoshfetrat/CsvCombiner/actions/workflows/dotnet-desktop.yml/badge.svg)](https://github.com/NaserKhoshfetrat/CsvCombiner/actions/workflows/dotnet-desktop.yml)
+
+## Download the latest build
+
+[![Download latest artifact](https://img.shields.io/badge/download-latest_build-blue)](https://nightly.link/NaserKhoshfetrat/CsvCombiner/actions/runs/26507288213/ConsoleMonthlyCsvCombiner.zip)
+
+> **Note:** The download link above always points to the most recent successful build from the `main` branch.  
+> No GitHub account is required – the file is served via [nightly.link](https://nightly.link).
+
 
 # Features
 * [x] **Monthly aggregation** – Automatically groups files by year and month.
