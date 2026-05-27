@@ -83,7 +83,15 @@ jobs:
           dotnet publish ConsoleMonthlyCsvCombiner/ConsoleMonthlyCsvCombiner/ConsoleMonthlyCsvCombiner.csproj `
             -c Release -r win-x64 --self-contained true `
             -p:PublishSingleFile=true -p:DebugType=None -p:DebugSymbols=false `
+            -p:SkipHashGeneration=true `
             -o publish
+        env:
+          GITHUB_ACTIONS: true
+      
+      - name: Generate SHA256 hash
+        run: |
+          $hash = Get-FileHash -Path publish/*.exe -Algorithm SHA256
+          $hash | Out-File -FilePath publish/hash.txt
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
