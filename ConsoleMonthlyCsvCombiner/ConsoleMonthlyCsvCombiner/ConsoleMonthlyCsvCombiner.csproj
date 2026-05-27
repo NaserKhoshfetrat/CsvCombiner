@@ -25,7 +25,7 @@
 	</ItemGroup>
 
 	<!--Get-FileHash -Path "ConsoleMonthlyCsvCombiner.exe" -Algorithm SHA256-->
-	<Target Name="ComputePublishHash" AfterTargets="Publish">
+	<Target Name="GenerateFileHash" AfterTargets="Publish" Condition="'$(GITHUB_ACTIONS)' != 'true'">
 		<PropertyGroup>
 			<!-- Ensure trailing backslash; PublishDir in FolderProfile.pubxml already has one -->
 			<PublishedExePath>$(PublishDir)$(AssemblyName).exe</PublishedExePath>
